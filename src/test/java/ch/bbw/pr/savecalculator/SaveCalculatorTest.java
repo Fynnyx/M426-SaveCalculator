@@ -111,7 +111,7 @@ public class SaveCalculatorTest {
         SaveCalculator testee = new SaveCalculator();
         int value1 = 500;
         int value2 = 10;
-        assertTrue(testee.multiplikation(value1, value2) == 5000);
+        assertTrue( testee.multiplikation(value1, value2) == 5000);
     }
 
     @Test

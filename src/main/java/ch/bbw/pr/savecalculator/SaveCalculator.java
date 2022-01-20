@@ -44,7 +44,7 @@ public class SaveCalculator {
 
 
 
-	private double multiplikation(int multiplikator, int multiplikand) {
+	public double multiplikation(int multiplikator, int multiplikand) {
 		long value = (long) multiplikator * (long) multiplikand;
 		if ((value > Integer.MAX_VALUE) || (value < Integer.MIN_VALUE)) {
 			throw new ArithmeticException();
