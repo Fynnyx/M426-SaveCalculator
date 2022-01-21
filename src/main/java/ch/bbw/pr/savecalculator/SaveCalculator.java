@@ -18,16 +18,38 @@ public class SaveCalculator {
 		return summand1 + summand2;
 	}
 
+
 	//Noch un-safe Methoden, die müssen noch angepasst werden.
-	public int subtraktion(int value1, int value2)
+	public int subtraktion(int minuend, int subtrahend) throws ArithmeticException
 	{
-		return value1 - value2;
+		long value = (long) minuend - (long) subtrahend;
+		if ((value > Integer.MAX_VALUE) || (value < Integer.MIN_VALUE)) {
+			throw new ArithmeticException();
+		}
+		return minuend - subtrahend;
 	}
-	public double division(int value1, int value2) {
-		return value1 / value2;
+
+
+	public double division(int dividend, int divisor) {
+		if (divisor != 0) {
+			long value = (long) dividend / (long) divisor;
+			if ((value > Integer.MAX_VALUE) || (value < Integer.MIN_VALUE)) {
+				throw new ArithmeticException();
+			}
+		} else {
+			throw new ArithmeticException();
+		}
+		return dividend / divisor;
 	}
-	private double multiplication(Integer value1, Integer value2) {
-		return value1 * value2;
+
+
+
+	public double multiplikation(int multiplikator, int multiplikand) {
+		long value = (long) multiplikator * (long) multiplikand;
+		if ((value > Integer.MAX_VALUE) || (value < Integer.MIN_VALUE)) {
+			throw new ArithmeticException();
+		}
+		return multiplikator * multiplikand;
 	}
 	//pow
 	//sqrt
