@@ -30,9 +30,9 @@ public class SaveCalculator {
 	}
 
 
-	public double division(int dividend, int divisor) {
+	public double division(double dividend, double divisor) {
 		if (divisor != 0) {
-			long value = (long) dividend / (long) divisor;
+			double value = dividend / divisor;
 			if ((value > Integer.MAX_VALUE) || (value < Integer.MIN_VALUE)) {
 				throw new ArithmeticException();
 			}
