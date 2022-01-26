@@ -218,18 +218,67 @@ public class SaveCalculatorTest {
 
     // Multiplikation -------------------------------------------
     @Test
-    public void multiplikationTrue() {
+    public void multiplikationTwoPositivesTrue() {
         SaveCalculator calc = new SaveCalculator();
-        int value1 = 500;
-        int value2 = 10;
-        assertTrue( calc.multiplikation(value1, value2) == 5000);
+        int value1 = 20;
+        int value2 = 2;
+        assertEquals(40, calc.multiplikation(value1, value2), DELTA);
     }
 
     @Test
-    public void multipluikationFalse() {
+    public void multiplikationTwoPositivesFalse() {
         SaveCalculator calc = new SaveCalculator();
-        int value1 = 100;
-        int value2 = 2;
-        assertFalse(calc.division(value1, value2) == 10);
+        int value1 = 2;
+        int value2 = 20;
+        assertNotEquals(20, calc.multiplikation(value1, value2));
+    }
+
+    @Test
+    public void multiplikationPositiveAndNegative() {
+        SaveCalculator calc = new SaveCalculator();
+        int value1 = 50;
+        int value2 = -2;
+        assertEquals(-100, calc.multiplikation(value1, value2), DELTA);
+    }
+
+    @Test
+    public void multiplikationTwoNegatives() {
+        SaveCalculator calc = new SaveCalculator();
+        int value1 = -40;
+        int value2 = -2;
+        assertEquals(80, calc.multiplikation(value1, value2), DELTA);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void multiplikationTwoMAX() {
+        SaveCalculator calc = new SaveCalculator();
+        int value1 = Integer.MAX_VALUE;
+        int value2 = Integer.MAX_VALUE;
+        assertEquals(1, calc.multiplikation(value1, value2), DELTA);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void multiplikationTwoMIN() {
+        SaveCalculator calc = new SaveCalculator();
+        int value1 = Integer.MIN_VALUE;
+        int value2 = Integer.MIN_VALUE;
+        assertEquals(1, calc.multiplikation(value1, value2), DELTA);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void multiplikationMAXAndMIN() {
+        SaveCalculator calc = new SaveCalculator();
+        int value1 = Integer.MAX_VALUE;
+        int value2 = Integer.MIN_VALUE;
+        assertNotEquals(0, calc.multiplikation(value1, value2));
+    }
+
+    @Test
+    public void multiplikationWithZero() {
+        SaveCalculator calc = new SaveCalculator();
+        int value1 = 10;
+        int value2 = 0;
+        calc.multiplikation(value1, value2);
+
     }
 }
