@@ -1,45 +1,76 @@
 package ch.bbw.pr.savecalculator;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static  org.junit.Assert.assertFalse;
 import org.junit.Test;
+
+import javax.naming.PartialResultException;
+
+import static org.junit.Assert.*;
 
 public class SaveCalculatorTest {
 
     // Addition -------------------------------------------
     @Test
-    public void summeTrue() {
+    public void summeAddTwoPositivesTrue() {
         SaveCalculator testee = new SaveCalculator();
         int value1 = 10;
         int value2 = 20;
-        assertTrue(testee.summe(value1, value2) == 30);
+        assertEquals(30, testee.summe(value1, value2));
     }
 
     @Test
-    public void summeFalse() {
+    public void summeAddTwoPositivesFalse() {
         SaveCalculator testee = new SaveCalculator();
         int value1 = 10;
         int value2 = 20;
-        assertFalse(testee.summe(value1, value2) == 40);
+        assertNotEquals(40, testee.summe(value1, value2));
+    }
+
+    @Test
+    public void summeAddPositiveaAndNegative() {
+        SaveCalculator testee = new SaveCalculator();
+        int value1 = -10;
+        int value2 = 20;
+        assertEquals(10, testee.summe(value1, value2));
+    }
+
+    @Test
+    public void summeAddTwoNegatives() {
+        SaveCalculator testee = new SaveCalculator();
+        int value1 = -20;
+        int value2 = -25;
+        assertEquals(-45, testee.summe(value1, value2));
+    }
+
+    @Test
+    public void summeAddTwoZero() {
+        SaveCalculator testee = new SaveCalculator();
+        int value1 = 0;
+        int value2 = 0;
+        assertEquals(0, testee.summe(value1, value2));
     }
 
     @Test(expected = ArithmeticException.class)
-    public void summeMax() {
+    public void summeAddTwoMAX() {
         SaveCalculator testee = new SaveCalculator();
         int value1 = Integer.MAX_VALUE;
-        int value2 = 1;
+        int value2 = Integer.MAX_VALUE;
         testee.summe(value1, value2);
-
     }
 
-    // kleiner als MIN_VALUE nicht möglich zu testen.
-//    @Test(expected = ArithmeticException.class)
-//    public void summeMin() {
-//        SaveCalculator testee = new SaveCalculator();
-//        int value1 = -2147483650;
-//        int value2 = 1;
-//        testee.summe(value1, value2);
-//    }
+    @Test(expected = ArithmeticException.class)
+    public void summeAddTwoMIN() {
+        SaveCalculator testee = new SaveCalculator();
+        int value1 = Integer.MIN_VALUE;
+        int value2 = Integer.MIN_VALUE;
+        testee.summe(value1, value2);
+    }
+
+    @Test
+    public void summeAddMAXAndMIN() {
+        SaveCalculator testee = new SaveCalculator();
+        int value1 = Integer.MAX_VALUE;
+        int value2 = Integer.MIN_VALUE;
+        testee.summe(value1, value2);
+    }
 
 
     // Subtraktion -------------------------------------------
@@ -121,5 +152,4 @@ public class SaveCalculatorTest {
         int value2 = 2;
         assertFalse(testee.division(value1, value2) == 10);
     }
-
 }
